@@ -23,13 +23,6 @@ public class Client {
     public void handshake() throws IOException {
         out.println("12345");
         out.flush();
-        if (socket.isConnected() && socket.getInputStream().available() > 0) {
-            String response = in.readLine();
-            if (!"OK".equals(response)) {
-                throw new IOException("Handshake failed: " + response);
-            }
-
-        }
 
     }
 
