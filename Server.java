@@ -13,7 +13,13 @@ public class Server {
     }
 
     public void serve(int clients) throws IOException {
-
+        for (int i = 0; i < clients; i++) {
+            Socket clientSocket = serverSocket.accept();
+            synchronized (connectedTimes) {
+                connectedTimes.add(LocalDateTime.now());
+            }
+            new clientThread(clientSocket).start();
+        }
     }
 
     public List<LocalDateTime> getConnectedTimes() {
@@ -25,8 +31,14 @@ public class Server {
     private void handleClient(Socket clientSocket) {
     };
 
-    private int factorize(int number) {
-
-    };
+    private int factorize(long number) {
+        int count = 0;
+        for (long i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
 
 }
