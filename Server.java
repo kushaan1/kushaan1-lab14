@@ -78,8 +78,12 @@ public class Server {
         return count;
     }
 
-    public void disconnect() throws IOException {
-        this.serverSocket.close();
+    public void disconnect() {
+        try {
+            this.serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
